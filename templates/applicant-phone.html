@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Applicants list
+{% endblock %}
+
+{% block content %}
+    <div id="elements">
+        {% for element in elements %}
+            {{ element.name }} - {{ element.phone_number }}<br>
+        {% endfor %}
+    </div>
+
+    {% include 'footer.html' %}
+{% endblock %}

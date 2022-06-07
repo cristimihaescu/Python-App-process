@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Applicants list
+{% endblock %}
+
+{% block content %}
+    <div id="elements">
+        <table class="zigzag">
+            <thead>
+            <tr>
+                <th class="header">Full Name</th>
+                <th class="header">Phone Number</th>
+                <th class="header">Email</th>
+                <th class="header">Application code</th>
+                <th class="header">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for element in elements %}
+
+                <tr class="tr-td">
+                    <td>{{ element.first_name }} {{ element.last_name }} </td>
+                    <td>{{ element.phone_number }}  </td>
+                    <td>{{ element.email }}  </td>
+                    <td>{{ element.application_code }} </td>
+                    <td><a href=/application/{{ element['application_code'] }}>{{ element['application_code'] }}</a>
+                    </td>
+                    <td>
+                        <a href="/applicants/{{ element.application_code }}">Edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% include 'footer.html' %}
+{% endblock %}

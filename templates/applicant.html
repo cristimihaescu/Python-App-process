@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Applicants list
+{% endblock %}
+
+{% block content %}
+    <div id="elements">
+        <table class="zigzag">
+            <thead>
+            <tr>
+                <th class="header">Full Name</th>
+                <th class="header">Phone Number</th>
+                <th class="header">Email</th>
+                <th class="header">Application code</th>
+                <th class="header">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for element in elements %}
+                <tr class="tr-td">
+                    <td>{{ element.first_name }} {{ element.last_name }} </td>
+                    <td>{{ element.phone_number }}  </td>
+                    <td>{{ element.email }}  </td>
+                    <td>{{ element.application_code }} </td>
+                    <td>
+                        <a href="/applicants/{{ element.application_code }}/deleted">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+      {% for element in elements %}
+        <form action="/applicants/{{ element.application_code }}/update" method="post">
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" disabled value={{ element.first_name}}><br>
+
+            <label for="flast">Last name:</label><br>
+            <input type="text" id="flast" name="flast" disabled value={{ element.last_name}}><br>
+
+            <label for="fphone">Phone number:</label><br>
+            <input type="text" id="fphone" name="fphone" value={{ element.phone_number}}><br>
+
+            <label for="femail">Email:</label><br>
+            <input type="text" id="femail" name="femail" disabled value={{element.email }}><br>
+
+            <label for="fapplication">Application_code:</label><br>
+            <input type="text" id="fapplication" name="fapplication" disabled value={{element.application_code }}><br>
+
+            <input type="submit" value="Update">
+        </form>
+     {% endfor %}
+    </div>
+
+    {% include 'footer.html' %}
+{% endblock %}
